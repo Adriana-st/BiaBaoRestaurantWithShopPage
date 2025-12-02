@@ -1,0 +1,34 @@
+/* RESPONSIVE DESIGN */
+
+/* Tablet */
+@media (max-width: 992px) {
+    /* body {
+        background-color: #686767;
+    } */
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* body {
+        background-color: #ff6969;
+    } */
+
+    #why-choose-us article {
+        column-count: 2;
+    }
+
+    #homeImage {
+        width: 100%;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 576px) {
+    /* body {
+        background-color: #a88b8b;
+    } */
+
+    #why-choose-us article {
+        column-count: 1;
+    }
+}

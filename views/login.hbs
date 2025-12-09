@@ -1,0 +1,148 @@
+<style>
+    body {
+        background: linear-gradient(135deg, #141414 0%, #2d1414 100%);
+        color: #fff;
+        padding-top: 100px;
+        min-height: 100vh;
+    }
+</style>
+
+<main class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card bg-dark border-warning shadow-lg">
+                <div class="card-header bg-warning text-dark text-center py-3">
+                    <h2 class="mb-0 fw-bold">Login to BiaBao</h2>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Login Error Alert -->
+                    <div class="alert alert-danger d-none" role="alert" id="loginerror">
+                        <strong>Login Failed!</strong> The username or password you entered is incorrect. 
+                        <a href="#" class="alert-link">Forgot your password?</a>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form name="login" id="user-login" method="get">
+                        <div class="mb-4">
+                            <label for="emailAddressID" class="form-label fw-semibold">
+                                <i class="bi bi-envelope-fill text-warning"></i> Email Address
+                            </label>
+                            <input type="email" 
+                                   class="form-control form-control-lg" 
+                                   id="emailAddressID" 
+                                   name="email" 
+                                   value="admin@biabao.ie" 
+                                   placeholder="Enter your email"
+                                   required>
+                            <small class="form-text text-muted">
+                                Demo: admin@biabao.ie
+                            </small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="passwordID" class="form-label fw-semibold">
+                                <i class="bi bi-lock-fill text-warning"></i> Password
+                            </label>
+                            <input type="password" 
+                                   class="form-control form-control-lg" 
+                                   id="passwordID" 
+                                   name="password" 
+                                   value="biabao123" 
+                                   placeholder="Enter your password"
+                                   required>
+                            <small class="form-text text-muted">
+                                Demo: biabao123
+                            </small>
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <div class="d-grid gap-2 mb-3">
+                            <button type="submit" class="btn btn-warning btn-lg fw-bold">
+                                <i class="bi bi-box-arrow-in-right"></i> Login
+                            </button>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="#" class="text-warning text-decoration-none">
+                                Forgot Password?
+                            </a>
+                            <span class="text-muted mx-2">|</span>
+                            <a href="/register" class="text-warning text-decoration-none">
+                                Need to Register?
+                            </a>
+                        </div>
+                    </form>
+
+                    <!-- Demo Credentials Info -->
+                    <div class="mt-4 p-3 bg-secondary bg-opacity-25 rounded">
+                        <h6 class="text-warning mb-2">
+                            <i class="bi bi-info-circle-fill"></i> Demo Account
+                        </h6>
+                        <p class="mb-1 small">
+                            <strong>Email:</strong> admin@biabao.ie
+                        </p>
+                        <p class="mb-0 small">
+                            <strong>Password:</strong> biabao123
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/" class="btn btn-outline-light">
+                    <i class="bi bi-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Login Script -->
+<script>
+    document.getElementById('user-login').addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+        const email = document.getElementById('emailAddressID').value;
+        const password = document.getElementById('passwordID').value;
+        
+        // Hardcoded credentials (as per sample code)
+        if (email === "admin@biabao.ie" && password === "biabao123") {
+            // Successful login
+            localStorage.setItem('loggedIn', 1);
+            localStorage.setItem('userEmail', email);
+            
+            // Show success message
+            alert("Login successful! Welcome to BiaBao.");
+            
+            // Redirect to shop page
+            window.location.href = "/shop";
+        } else {
+            // Login failed
+            localStorage.setItem('loggedIn', 0);
+            
+            // Show error message
+            const errorElement = document.getElementById("loginerror");
+            errorElement.classList.remove("d-none");
+            
+            // Hide error after 5 seconds
+            setTimeout(() => {
+                errorElement.classList.add("d-none");
+            }, 5000);
+        }
+    });
+
+    // Check if already logged in
+    window.addEventListener('DOMContentLoaded', () => {
+        const loggedIn = localStorage.getItem('loggedIn');
+        if (loggedIn == 1) {
+            // Already logged in, redirect to shop
+            window.location.href = "/shop";
+        }
+    });
+</script>

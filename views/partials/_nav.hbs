@@ -1,38 +1,3 @@
-{{!-- <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <!-- Logo and Brand -->
-      <a class="navbar-brand d-flex align-items-center" href="/">
-        <img src="/images/BiaBaoLogo.png" alt="Bia Bao Logo" id="logo" style="height: 50px; margin-right: 10px;">
-        <span class="text-danger fw-bold">Bia Bao</span>
-      </a>
-
-      <!-- Toggler for mobile -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Nav links -->
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link {{#if state.home}}text-warning active{{else}}text-white{{/if}}" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{#if state.about}}text-warning active{{else}}text-white{{/if}}" href="/about">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{#if state.menu}}text-warning active{{else}}text-white{{/if}}" href="/menu">Menu</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{#if state.contact}}text-warning active{{else}}text-white{{/if}}" href="/contact">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header> --}}
 
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -82,9 +47,29 @@
             </a>
           </li>
 
+          <!-- User Details (Only when logged in) -->
+          <li class="nav-item d-none" id="userDetailsNav">
+            <a class="nav-link text-white" href="/userdetails" title="My Details">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+              </svg>
+            </a>
+          </li>
+
+          <!-- Login/Logout Button -->
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/login" id="loginlogout" title="Login">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+              </svg>
+            </a>
+          </li>
+
           <!-- Cart Icon with Counter -->
           <li class="nav-item">
-            <a class="nav-link position-relative" href="/cart" id="cartLink">
+            <a class="nav-link position-relative" href="/cart" id="cartLink" title="Shopping Cart">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
               </svg>
@@ -101,22 +86,103 @@
   </nav>
 </header>
 
-<!-- Cart Counter Update Script -->
+<!-- Navigation & Cart Management Script -->
 <script>
-  // Update cart counter on page load
+  // Initialize cart counter and login status
+  function initializeNav() {
+    // Set checkout counter if not exists
+    if (localStorage.getItem('checkout') == null) {
+      localStorage.setItem('checkout', 0);
+    }
+    
+    updateCartCounter();
+    checkLoginStatus();
+  }
+
+  // Update cart counter display
   function updateCartCounter() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     const counter = document.getElementById('cartCounter');
+    
     if (counter) {
       counter.textContent = totalItems;
       counter.style.display = totalItems > 0 ? 'inline-block' : 'none';
     }
+    
+    // Also update old checkout counter if it exists
+    localStorage.setItem('checkout', totalItems);
   }
-  
-  // Run on page load
-  document.addEventListener('DOMContentLoaded', updateCartCounter);
-  
+
+  // Check if user is logged in
+  function checkLoginStatus() {
+    const loggedIn = localStorage.getItem('loggedIn');
+    const loginButton = document.getElementById('loginlogout');
+    const userDetailsNav = document.getElementById('userDetailsNav');
+
+    if (loggedIn == 1) {
+      // User is logged in - show logout icon
+      loginButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+          <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+        </svg>
+      `;
+      loginButton.setAttribute('title', 'Logout');
+      
+      // Show user details link
+      if (userDetailsNav) {
+        userDetailsNav.classList.remove('d-none');
+      }
+    } else {
+      // User is logged out - show login icon
+      loginButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+          <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+        </svg>
+      `;
+      loginButton.setAttribute('title', 'Login');
+      
+      // Hide user details link
+      if (userDetailsNav) {
+        userDetailsNav.classList.add('d-none');
+      }
+    }
+  }
+
+  // Handle login/logout click
+  document.getElementById('loginlogout').addEventListener('click', (event) => {
+    event.preventDefault();
+    
+    const loggedIn = localStorage.getItem('loggedIn');
+    
+    if (loggedIn == 1) {
+      // User is logged in - log them out
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.setItem('loggedIn', 0);
+        localStorage.removeItem('userEmail');
+        window.location.href = "/";
+      }
+    } else {
+      // User is logged out - go to login page
+      window.location.href = "/login";
+    }
+  });
+
   // Listen for cart updates
   window.addEventListener('cartUpdated', updateCartCounter);
+  
+  // Listen for storage changes (for multi-tab sync)
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'cart' || e.key === 'checkout') {
+      updateCartCounter();
+    }
+    if (e.key === 'loggedIn') {
+      checkLoginStatus();
+    }
+  });
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initializeNav);
 </script>

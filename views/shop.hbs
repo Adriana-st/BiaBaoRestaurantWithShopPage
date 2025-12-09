@@ -293,7 +293,7 @@
     // Add to cart function
     function addToCart(name, price, image, button) {
         // Get quantity
-        const quantityInput = button.parentElement.previousElementSibling.querySelector('input');
+        const quantityInput = button.closest('.card-body').querySelector('input')
         const quantity = parseInt(quantityInput.value);
         
         // Get cart from localStorage
@@ -324,6 +324,9 @@
         
         // Dispatch custom event
         window.dispatchEvent(new Event('cartUpdated'));
+
+        // Reset quantity to 1
+        quantityInput.value = 1;
     }
 
     // Show feedback when item added
@@ -363,4 +366,4 @@
 
     // Initialize cart display on page load
     document.addEventListener('DOMContentLoaded', updateCartDisplay);
-</script>
+</script> 

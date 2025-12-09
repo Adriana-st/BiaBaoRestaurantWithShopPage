@@ -1,0 +1,217 @@
+<style>
+    body {
+        background-color: #141414;
+        color: #fff;
+        padding-top: 100px;
+        min-height: 100vh;
+    }
+</style>
+
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card bg-dark border-warning shadow-lg">
+                <div class="card-header bg-warning text-dark py-3">
+                    <h2 class="mb-0 fw-bold">
+                        <i class="bi bi-person-circle"></i> User Details
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Success Message -->
+                    <div class="alert alert-success d-none" role="alert" id="updateSuccess">
+                        <strong>Success!</strong> Your details have been updated.
+                    </div>
+
+                    <form name="userdetails" id="udetails" action="" method="get">
+                        <div class="row">
+                            <!-- Personal Information -->
+                            <div class="col-md-6 mb-4">
+                                <h5 class="text-warning mb-3">Personal Information</h5>
+                                
+                                <div class="mb-3">
+                                    <label for="firstNameID" class="form-label fw-semibold">
+                                        First Name <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="firstNameID" 
+                                           name="firstname" 
+                                           required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="lastNameID" class="form-label fw-semibold">
+                                        Last Name <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="lastNameID" 
+                                           name="lastname" 
+                                           required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="dobID" class="form-label fw-semibold">
+                                        Date of Birth <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="date" 
+                                           class="form-control" 
+                                           id="dobID" 
+                                           name="dob" 
+                                           required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="phoneID" class="form-label fw-semibold">
+                                        Phone Number
+                                    </label>
+                                    <input type="tel" 
+                                           class="form-control" 
+                                           id="phoneID" 
+                                           name="phone" 
+                                           placeholder="(071) 123 4567">
+                                </div>
+                            </div>
+
+                            <!-- Address Information -->
+                            <div class="col-md-6 mb-4">
+                                <h5 class="text-warning mb-3">Delivery Address</h5>
+                                
+                                <div class="mb-3">
+                                    <label for="address1ID" class="form-label fw-semibold">
+                                        Address Line 1 <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="address1ID" 
+                                           name="address1" 
+                                           placeholder="Street Address"
+                                           required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="address2ID" class="form-label fw-semibold">
+                                        Address Line 2 <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="address2ID" 
+                                           name="address2" 
+                                           placeholder="Town/City"
+                                           required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="address3ID" class="form-label fw-semibold">
+                                        County <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="address3ID" 
+                                           name="address3" 
+                                           placeholder="County"
+                                           required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="eircodeID" class="form-label fw-semibold">
+                                        Eircode
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="eircodeID" 
+                                           name="eircode" 
+                                           placeholder="F91 XXXX">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="border-secondary my-4">
+
+                        <div class="d-flex gap-2 justify-content-end">
+                            <a href="/shop" class="btn btn-secondary btn-lg">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-warning btn-lg fw-bold">
+                                <i class="bi bi-save"></i> Update My Details
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- User Details Script -->
+<script>
+    // Check if user is logged in
+    const loggedIn = localStorage.getItem('loggedIn');
+    if (loggedIn != 1) {
+        alert("Please login to view your details.");
+        window.location.href = "/login";
+    }
+
+    // Initialize user details
+    if (localStorage.getItem('userdetails') === null) {
+        // Default user details
+        const userDetails = {
+            firstName: "John",
+            lastName: "Doe",
+            dob: "1990-01-01",
+            phone: "071 123 4567",
+            address1: "123 Food Street",
+            address2: "Sligo",
+            address3: "Co. Sligo",
+            eircode: "F91 ABCD"
+        };
+        localStorage.setItem('userdetails', JSON.stringify(userDetails));
+    }
+
+    // Load user details
+    function loadUserDetails() {
+        const userDetails = JSON.parse(localStorage.getItem('userdetails'));
+        
+        document.getElementById("firstNameID").value = userDetails.firstName;
+        document.getElementById("lastNameID").value = userDetails.lastName;
+        document.getElementById("dobID").value = userDetails.dob;
+        document.getElementById("phoneID").value = userDetails.phone || "";
+        document.getElementById("address1ID").value = userDetails.address1;
+        document.getElementById("address2ID").value = userDetails.address2;
+        document.getElementById("address3ID").value = userDetails.address3;
+        document.getElementById("eircodeID").value = userDetails.eircode || "";
+    }
+
+    // Save user details
+    document.getElementById('udetails').addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const userDetails = {
+            firstName: document.getElementById('firstNameID').value,
+            lastName: document.getElementById('lastNameID').value,
+            dob: document.getElementById('dobID').value,
+            phone: document.getElementById('phoneID').value,
+            address1: document.getElementById('address1ID').value,
+            address2: document.getElementById('address2ID').value,
+            address3: document.getElementById('address3ID').value,
+            eircode: document.getElementById('eircodeID').value
+        };
+
+        localStorage.setItem('userdetails', JSON.stringify(userDetails));
+
+        // Show success message
+        const successElement = document.getElementById("updateSuccess");
+        successElement.classList.remove("d-none");
+
+        // Hide success message after 3 seconds
+        setTimeout(() => {
+            successElement.classList.add("d-none");
+        }, 3000);
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Load details on page load
+    window.addEventListener('DOMContentLoaded', loadUserDetails);
+</script>

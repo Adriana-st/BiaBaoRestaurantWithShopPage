@@ -17,8 +17,7 @@
                 <div class="card-body p-4">
                     <!-- Login Error Alert -->
                     <div class="alert alert-danger d-none" role="alert" id="loginerror">
-                        <strong>Login Failed!</strong> The username or password you entered is incorrect. 
-                        <a href="#" class="alert-link">Forgot your password?</a>
+                        <strong>Login Failed!</strong> The username or password you entered is incorrect.
                     </div>
 
                     <!-- Login Form -->
@@ -69,11 +68,7 @@
                         </div>
 
                         <div class="text-center">
-                            <a href="#" class="text-warning text-decoration-none">
-                                Forgot Password?
-                            </a>
-                            <span class="text-muted mx-2">|</span>
-                            <a href="/register" class="text-warning text-decoration-none">
+                            <a href="/register" class="text-warning text-decoration-none fw-bold">
                                 Need to Register?
                             </a>
                         </div>
@@ -108,17 +103,53 @@
     document.getElementById('user-login').addEventListener('submit', (event) => {
         event.preventDefault();
         
-        const email = document.getElementById('emailAddressID').value;
+        const email = document.getElementById('emailAddressID').value.toLowerCase();
         const password = document.getElementById('passwordID').value;
         
-        // Hardcoded credentials (as per sample code)
+        let loginSuccessful = false;
+        let userData = null;
+        
+        // Check hardcoded admin account first
         if (email === "admin@biabao.ie" && password === "biabao123") {
+            loginSuccessful = true;
+            userData = {
+                email: email,
+                firstName: "Admin",
+                lastName: "User",
+                address1: "123 Food Street",
+                address2: "Sligo",
+                address3: "Co. Sligo",
+                phone: "071 123 4567",
+                dob: "1990-01-01",
+                eircode: "F91 ABCD"
+            };
+        } else {
+            // Check registered users from localStorage
+            const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                loginSuccessful = true;
+                userData = user;
+            }
+        }
+        
+        if (loginSuccessful) {
             // Successful login
             localStorage.setItem('loggedIn', 1);
             localStorage.setItem('userEmail', email);
             
-            // Show success message
-            alert("Login successful! Welcome to BiaBao.");
+            // Save user details
+            localStorage.setItem('userdetails', JSON.stringify({
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                dob: userData.dob,
+                phone: userData.phone,
+                address1: userData.address1,
+                address2: userData.address2,
+                address3: userData.address3,
+                eircode: userData.eircode || ""
+            }));
             
             // Redirect to shop page
             window.location.href = "/shop";

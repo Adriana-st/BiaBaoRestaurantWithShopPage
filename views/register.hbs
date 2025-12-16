@@ -1,0 +1,288 @@
+<style>
+    body {
+        background: linear-gradient(135deg, #141414 0%, #2d1414 100%);
+        color: #fff;
+        padding-top: 100px;
+        min-height: 100vh;
+    }
+</style>
+
+<main class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card bg-dark border-warning shadow-lg">
+                <div class="card-header bg-warning text-dark text-center py-3">
+                    <h2 class="mb-0 fw-bold">Create Account</h2>
+                </div>
+                <div class="card-body p-4">
+                    
+                    <!-- Success Message -->
+                    <div class="alert alert-success d-none" role="alert" id="registerSuccess">
+                        <strong>Success!</strong> Your account has been created. 
+                        Redirecting to login...
+                    </div>
+
+                    <!-- Error Message -->
+                    <div class="alert alert-danger d-none" role="alert" id="registerError">
+                        <strong>Error!</strong> <span id="errorMessage"></span>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <form name="register" id="user-register" method="get">
+                        
+                        <!-- Personal Information -->
+                        <h5 class="text-warning mb-3">Personal Information</h5>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstNameID" class="form-label fw-semibold">
+                                    First Name <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" 
+                                       class="form-control form-control-lg" 
+                                       id="firstNameID" 
+                                       name="firstname" 
+                                       placeholder="John"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="lastNameID" class="form-label fw-semibold">
+                                    Last Name <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" 
+                                       class="form-control form-control-lg" 
+                                       id="lastNameID" 
+                                       name="lastname" 
+                                       placeholder="Doe"
+                                       required>
+                            </div>
+                        </div>
+
+                        <!-- Account Information -->
+                        <h5 class="text-warning mb-3 mt-4">Account Information</h5>
+
+                        <div class="mb-3">
+                            <label for="emailID" class="form-label fw-semibold">
+                                <i class="bi bi-envelope-fill text-warning"></i> Email Address <span class="text-danger">*</span>
+                            </label>
+                            <input type="email" 
+                                   class="form-control form-control-lg" 
+                                   id="emailID" 
+                                   name="email" 
+                                   placeholder="your.email@example.com"
+                                   required>
+                            <small class="form-text text-muted">
+                                We'll use this for login and order confirmations
+                            </small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="passwordID" class="form-label fw-semibold">
+                                <i class="bi bi-lock-fill text-warning"></i> Password <span class="text-danger">*</span>
+                            </label>
+                            <input type="password" 
+                                   class="form-control form-control-lg" 
+                                   id="passwordID" 
+                                   name="password" 
+                                   placeholder="Enter a strong password"
+                                   minlength="6"
+                                   required>
+                            <small class="form-text text-muted">
+                                Minimum 6 characters
+                            </small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmPasswordID" class="form-label fw-semibold">
+                                Confirm Password <span class="text-danger">*</span>
+                            </label>
+                            <input type="password" 
+                                   class="form-control form-control-lg" 
+                                   id="confirmPasswordID" 
+                                   name="confirmPassword" 
+                                   placeholder="Re-enter your password"
+                                   minlength="6"
+                                   required>
+                        </div>
+
+                        <!-- Delivery Address -->
+                        <h5 class="text-warning mb-3 mt-4">Delivery Address</h5>
+
+                        <div class="mb-3">
+                            <label for="address1ID" class="form-label fw-semibold">
+                                Address Line 1 <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="address1ID" 
+                                   name="address1" 
+                                   placeholder="Street Address"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="address2ID" class="form-label fw-semibold">
+                                Town/City <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="address2ID" 
+                                   name="address2" 
+                                   placeholder="Town or City"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="address3ID" class="form-label fw-semibold">
+                                County <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="address3ID" 
+                                   name="address3" 
+                                   placeholder="County"
+                                   required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="phoneID" class="form-label fw-semibold">
+                                Phone Number
+                            </label>
+                            <input type="tel" 
+                                   class="form-control" 
+                                   id="phoneID" 
+                                   name="phone" 
+                                   placeholder="(071) 123 4567">
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" 
+                                   type="checkbox" 
+                                   id="termsCheck"
+                                   required>
+                            <label class="form-check-label" for="termsCheck">
+                                I agree to the <a href="#" class="text-warning">Terms & Conditions</a> 
+                                and <a href="#" class="text-warning">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2 mb-3">
+                            <button type="submit" class="btn btn-warning btn-lg fw-bold">
+                                <i class="bi bi-person-plus"></i> Create Account
+                            </button>
+                        </div>
+
+                        <!-- Login Link -->
+                        <div class="text-center">
+                            <p class="text-muted mb-0">
+                                Already have an account? 
+                                <a href="/login" class="text-warning text-decoration-none fw-bold">
+                                    Login here
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/" class="btn btn-outline-light">
+                    <i class="bi bi-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Registration Script -->
+<script>
+    document.getElementById('user-register').addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        // Get form values
+        const firstName = document.getElementById('firstNameID').value;
+        const lastName = document.getElementById('lastNameID').value;
+        const email = document.getElementById('emailID').value.toLowerCase();
+        const password = document.getElementById('passwordID').value;
+        const confirmPassword = document.getElementById('confirmPasswordID').value;
+        const address1 = document.getElementById('address1ID').value;
+        const address2 = document.getElementById('address2ID').value;
+        const address3 = document.getElementById('address3ID').value;
+        const phone = document.getElementById('phoneID').value;
+
+        // Validate passwords match
+        if (password !== confirmPassword) {
+            showError("Passwords do not match!");
+            return;
+        }
+
+        // Get existing users from localStorage
+        let users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+
+        // Check if email already exists
+        const emailExists = users.some(user => user.email === email);
+        if (emailExists) {
+            showError("An account with this email already exists!");
+            return;
+        }
+
+        // Create new user object
+        const newUser = {
+            email: email,
+            password: password, // In real app, this would be hashed!
+            firstName: firstName,
+            lastName: lastName,
+            address1: address1,
+            address2: address2,
+            address3: address3,
+            phone: phone,
+            dob: "1990-01-01", // Default value
+            eircode: "",
+            registeredDate: new Date().toISOString()
+        };
+
+        // Add to users array
+        users.push(newUser);
+
+        // Save to localStorage
+        localStorage.setItem('registeredUsers', JSON.stringify(users));
+
+        // Show success message
+        document.getElementById('registerError').classList.add('d-none');
+        document.getElementById('registerSuccess').classList.remove('d-none');
+
+        // Redirect to login after 2 seconds
+        setTimeout(() => {
+            window.location.href = "/login";
+        }, 2000);
+    });
+
+    function showError(message) {
+        document.getElementById('errorMessage').textContent = message;
+        document.getElementById('registerError').classList.remove('d-none');
+        document.getElementById('registerSuccess').classList.add('d-none');
+
+        // Scroll to error
+        document.getElementById('registerError').scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+        });
+
+        // Hide error after 5 seconds
+        setTimeout(() => {
+            document.getElementById('registerError').classList.add('d-none');
+        }, 5000);
+    }
+
+    // Check if already logged in
+    window.addEventListener('DOMContentLoaded', () => {
+        const loggedIn = localStorage.getItem('loggedIn');
+        if (loggedIn == 1) {
+            // Already logged in, redirect to home
+            window.location.href = "/";
+        }
+    });
+</script>

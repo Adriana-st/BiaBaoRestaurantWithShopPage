@@ -1,0 +1,381 @@
+<style>
+    body {
+        background-color: #141414;
+        color: #fff;
+        padding-top: 100px;
+        min-height: 100vh;
+    }
+    
+    .checkout-section {
+        background-color: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 10px;
+    }
+</style>
+
+<main class="container my-5">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <h1 class="display-4 fw-bold text-warning">Checkout</h1>
+            <p class="text-light">Complete your order</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Left Column - Forms -->
+        <div class="col-lg-8">
+            <form name="checkout" id="user-checkout" method="get">
+                
+                <!-- Delivery Details Section -->
+                <div class="checkout-section p-4 mb-4">
+                    <h3 class="text-warning mb-4">
+                        <i class="bi bi-truck"></i> Delivery Details
+                    </h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="getFirstName" class="form-label fw-semibold">
+                                First Name <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="getFirstName" 
+                                   name="firstname" 
+                                   required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="getLastName" class="form-label fw-semibold">
+                                Last Name <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="getLastName" 
+                                   name="lastname" 
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="getAddress1" class="form-label fw-semibold">
+                            Address Line 1 <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="getAddress1" 
+                               name="address1" 
+                               placeholder="Street Address"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="getAddress2" class="form-label fw-semibold">
+                            Town/City <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="getAddress2" 
+                               name="address2" 
+                               placeholder="Town or City"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="getAddress3" class="form-label fw-semibold">
+                            County <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="getAddress3" 
+                               name="address3" 
+                               placeholder="County"
+                               required>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i> 
+                        Your delivery details have been pre-filled from your account. 
+                        <a href="/userdetails" class="alert-link">Update your details</a>
+                    </div>
+                </div>
+
+                <!-- Payment Details Section -->
+                <div class="checkout-section p-4 mb-4">
+                    <h3 class="text-warning mb-4">
+                        <i class="bi bi-credit-card"></i> Payment Details
+                    </h3>
+
+                    <div class="mb-3">
+                        <label for="cardName" class="form-label fw-semibold">
+                            Name on Card <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="cardName" 
+                               name="cardname" 
+                               placeholder="MR JOHN DOE"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label fw-semibold">
+                            Card Number <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="cardNumber" 
+                               name="cardNumber" 
+                               placeholder="1234 5678 9012 3456"
+                               maxlength="19"
+                               required>
+                        <small class="form-text text-muted">
+                            Demo: 1234 5678 9012 3456
+                        </small>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cardExpiry" class="form-label fw-semibold">
+                                Expiry Date <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="cardExpiry" 
+                                   name="cardExpiry" 
+                                   placeholder="MM/YY"
+                                   maxlength="5"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="cardCvv" class="form-label fw-semibold">
+                                CVV <span class="text-danger">*</span>
+                            </label>
+                            <input type="password" 
+                                   class="form-control" 
+                                   id="cardCvv" 
+                                   name="cardCvv" 
+                                   placeholder="123"
+                                   maxlength="3"
+                                   required>
+                            <small class="form-text text-muted">
+                                Demo: 123
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Payment Messages -->
+                    <div class="alert alert-success d-none" id="payment-success" role="alert">
+                        <h5 class="alert-heading">
+                            <i class="bi bi-check-circle-fill"></i> Payment Successful!
+                        </h5>
+                        <p class="mb-0">
+                            Thank you for your purchase. You will receive delivery details via email.
+                        </p>
+                    </div>
+
+                    <div class="alert alert-danger d-none" id="payment-failure" role="alert">
+                        <h5 class="alert-heading">
+                            <i class="bi bi-x-circle-fill"></i> Payment Failed
+                        </h5>
+                        <p class="mb-0">
+                            There seems to be a problem with the card details you entered. 
+                            Please check and try again.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2">
+                    <button type="submit" 
+                            class="btn btn-warning btn-lg fw-bold" 
+                            id="buy-now">
+                        <i class="bi bi-lock-fill"></i> Complete Purchase
+                    </button>
+                    <a href="/cart" class="btn btn-outline-light">
+                        <i class="bi bi-arrow-left"></i> Back to Cart
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Right Column - Order Summary -->
+        <div class="col-lg-4">
+            <div class="checkout-section p-4 sticky-top" style="top: 100px;">
+                <h3 class="text-warning mb-4">Order Summary</h3>
+
+                <!-- Cart Items -->
+                <div id="checkoutItemsList" class="mb-4">
+                    <!-- Items will be loaded here -->
+                </div>
+
+                <hr class="border-secondary">
+
+                <!-- Totals -->
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Subtotal:</span>
+                    <span class="fw-bold">€<span id="checkoutSubtotal">0.00</span></span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Delivery:</span>
+                    <span class="fw-bold">€<span id="checkoutDelivery">3.50</span></span>
+                </div>
+                <hr class="border-secondary">
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="fs-5 fw-bold text-warning">Total:</span>
+                    <span class="fs-4 fw-bold text-warning">€<span id="checkoutTotal">0.00</span></span>
+                </div>
+
+                <div class="alert alert-warning small">
+                    <i class="bi bi-clock"></i> Estimated delivery: 30-45 minutes
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Checkout Script -->
+<script>
+    // Check if user is logged in
+    const loggedIn = localStorage.getItem('loggedIn');
+    if (loggedIn != 1) {
+        alert("Please login before checking out.");
+        window.location.href = "/login";
+    }
+
+    // Check if cart has items
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        alert("Your cart is empty. Please add items before checkout.");
+        window.location.href = "/shop";
+    }
+
+    // Load user details into form
+    function loadUserDetails() {
+        const userDetails = JSON.parse(localStorage.getItem('userdetails'));
+        if (userDetails) {
+            document.getElementById('getFirstName').value = userDetails.firstName || '';
+            document.getElementById('getLastName').value = userDetails.lastName || '';
+            document.getElementById('getAddress1').value = userDetails.address1 || '';
+            document.getElementById('getAddress2').value = userDetails.address2 || '';
+            document.getElementById('getAddress3').value = userDetails.address3 || '';
+            
+            // Pre-fill card name
+            const fullName = `${userDetails.firstName} ${userDetails.lastName}`.toUpperCase();
+            document.getElementById('cardName').value = fullName;
+        }
+    }
+
+    // Load cart items
+    function loadCartItems() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const itemsList = document.getElementById('checkoutItemsList');
+        
+        let itemsHTML = '';
+        cart.forEach(item => {
+            itemsHTML += `
+                <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom border-secondary">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="${item.image}" alt="${item.name}" 
+                             style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                        <div>
+                            <div class="fw-bold small">${item.name}</div>
+                            <div class="text-muted small">Qty: ${item.quantity}</div>
+                        </div>
+                    </div>
+                    <div class="text-warning fw-bold">
+                        €${(item.price * item.quantity).toFixed(2)}
+                    </div>
+                </div>
+            `;
+        });
+        
+        itemsList.innerHTML = itemsHTML;
+        updateTotals();
+    }
+
+    // Update totals
+    function updateTotals() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const delivery = subtotal >= 25 ? 0 : 3.50;
+        const total = subtotal + delivery;
+
+        document.getElementById('checkoutSubtotal').textContent = subtotal.toFixed(2);
+        document.getElementById('checkoutDelivery').textContent = delivery.toFixed(2);
+        document.getElementById('checkoutTotal').textContent = total.toFixed(2);
+    }
+
+    // Format card number with spaces
+    document.getElementById('cardNumber').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\s/g, '');
+        let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+        e.target.value = formattedValue;
+    });
+
+    // Format expiry date
+    document.getElementById('cardExpiry').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length >= 2) {
+            value = value.slice(0, 2) + '/' + value.slice(2, 4);
+        }
+        e.target.value = value;
+    });
+
+    // Handle checkout submission
+    document.getElementById('user-checkout').addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+        const cardCvv = document.getElementById('cardCvv').value;
+        
+        // Hardcoded validation (like sample code)
+        if (cardNumber === "1234567890123456" && cardCvv === "123") {
+            // Payment successful
+            document.getElementById('payment-failure').classList.add('d-none');
+            document.getElementById('payment-success').classList.remove('d-none');
+            
+            // Save order details
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const order = {
+                items: cart,
+                total: document.getElementById('checkoutTotal').textContent,
+                date: new Date().toISOString(),
+                deliveryDetails: {
+                    firstName: document.getElementById('getFirstName').value,
+                    lastName: document.getElementById('getLastName').value,
+                    address1: document.getElementById('getAddress1').value,
+                    address2: document.getElementById('getAddress2').value,
+                    address3: document.getElementById('getAddress3').value
+                }
+            };
+            localStorage.setItem('lastOrder', JSON.stringify(order));
+            
+            // Clear cart
+            localStorage.setItem('cart', JSON.stringify([]));
+            localStorage.setItem('checkout', 0);
+            
+            // Redirect to success page after 2 seconds
+            setTimeout(() => {
+                window.location.href = "/ordersuccess";
+            }, 2000);
+            
+        } else {
+            // Payment failed
+            document.getElementById('payment-success').classList.add('d-none');
+            document.getElementById('payment-failure').classList.remove('d-none');
+            
+            // Scroll to error message
+            document.getElementById('payment-failure').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }
+    });
+
+    // Load data on page load
+    window.addEventListener('DOMContentLoaded', () => {
+        loadUserDetails();
+        loadCartItems();
+    });
+</script>

@@ -102,6 +102,30 @@ app.get('/cart', (req, res) => {
   console.log('cart');
 });
 
+// checkout route
+app.get('/checkout', (req, res) => {
+  state = {home: false, contact: false, about: false, menu: false, shop: false};
+  head = {
+    title: "Checkout - BiaBao", 
+    description: "Complete your order with secure payment. Fast delivery to your door.", 
+    keywords: "BiaBao checkout, payment, order food, secure checkout"
+  };
+  res.render('checkout', {state: state, head: head});
+  console.log('checkout');
+});
+
+// order success route
+app.get('/ordersuccess', (req, res) => {
+  state = {home: false, contact: false, about: false, menu: false, shop: false};
+  head = {
+    title: "Order Successful - BiaBao", 
+    description: "Thank you for your order! Your food is on the way.", 
+    keywords: "BiaBao order confirmation, order success"
+  };
+  res.render('ordersuccess', {state: state, head: head});
+  console.log('ordersuccess');
+});
+
 // login route
 app.get('/login', (req, res) => {
   state = {home: false, contact: false, about: false, menu: false, shop: false};
@@ -112,6 +136,18 @@ app.get('/login', (req, res) => {
   };
   res.render('login', {state: state, head: head});
   console.log('login');
+});
+
+// register route
+app.get('/register', (req, res) => {
+  state = {home: false, contact: false, about: false, menu: false, shop: false};
+  head = {
+    title: "Register - BiaBao", 
+    description: "Create a BiaBao account for faster checkout and order tracking.", 
+    keywords: "BiaBao register, create account, sign up"
+  };
+  res.render('register', {state: state, head: head});
+  console.log('register');
 });
 
 // user details route
@@ -137,6 +173,11 @@ app.get('/thankyou', (req, res) => {
     email,
     message
   });
+});
+
+// Serve products JSON
+app.get('/data/products.json', (req, res) => {
+  res.sendFile(__dirname + '/public/data/products.json');
 });
 
 // Start the server

@@ -31,6 +31,21 @@
     .add-to-cart-btn:hover {
         transform: scale(1.05);
     }
+
+    .loading-spinner {
+        border: 4px solid #333;
+        border-top: 4px solid #FFC107;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 50px auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 </style>
 
 <main>
@@ -42,218 +57,16 @@
         </div>
     </section>
 
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="text-center">
+        <div class="loading-spinner"></div>
+        <p class="text-light mt-3">Loading products...</p>
+    </div>
+
     <!-- Product Grid -->
     <section class="container mb-5">
         <div class="row g-4" id="productGrid">
-            
-            <!-- Product 1: Baozi -->
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="card product-card">
-                    <img src="images/baozi.png" class="card-img-top product-image" alt="Steamed Baozi">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-warning fw-bold">Steamed Baozi</h5>
-                        <p class="card-text text-light flex-grow-1">
-                            Fluffy steamed buns filled with savoury pork and fresh vegetables. 
-                            A traditional Chinese favourite!
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fs-4 fw-bold text-warning">€8.50</span>
-                            <div class="input-group" style="width: 100px;">
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="number" class="form-control form-control-sm text-center" value="1" min="1" max="10" readonly>
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="btn btn-warning w-100 fw-bold add-to-cart-btn" 
-                                onclick="addToCart('Steamed Baozi', 8.50, 'images/baozi.png', this)">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 2: Taiwanese Braised Beef -->
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="card product-card">
-                    <img src="images/braisedBeef2.jpg" class="card-img-top product-image" alt="Taiwanese Braised Beef">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-warning fw-bold">Taiwanese Braised Beef</h5>
-                        <p class="card-text text-light flex-grow-1">
-                            Tender beef slow-cooked in aromatic soy sauce with star anise and 
-                            served over rice.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fs-4 fw-bold text-warning">€14.99</span>
-                            <div class="input-group" style="width: 100px;">
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="number" class="form-control form-control-sm text-center" value="1" min="1" max="10" readonly>
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="btn btn-warning w-100 fw-bold add-to-cart-btn" 
-                                onclick="addToCart('Taiwanese Braised Beef', 14.99, 'images/braisedBeef2.jpg', this)">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 3: Crispy Roast Duck -->
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="card product-card">
-                    <img src="images/CrispyDuck.jpg" class="card-img-top product-image" alt="Crispy Roast Duck">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-warning fw-bold">Crispy Roast Duck</h5>
-                        <p class="card-text text-light flex-grow-1">
-                            Succulent duck with perfectly crispy skin, served with pancakes, 
-                            cucumber, and hoisin sauce.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fs-4 fw-bold text-warning">€16.99</span>
-                            <div class="input-group" style="width: 100px;">
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="number" class="form-control form-control-sm text-center" value="1" min="1" max="10" readonly>
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="btn btn-warning w-100 fw-bold add-to-cart-btn" 
-                                onclick="addToCart('Crispy Roast Duck', 16.99, 'images/CrispyDuck.jpg', this)">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 4: Korean Fried Rice -->
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="card product-card">
-                    <img src="images/koreanFriedRice.jpg" class="card-img-top product-image" alt="Korean Fried Rice">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-warning fw-bold">Korean Fried Rice</h5>
-                        <p class="card-text text-light flex-grow-1">
-                            Spicy kimchi fried rice with vegetables, topped with a fried egg 
-                            and sesame seeds.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fs-4 fw-bold text-warning">€11.50</span>
-                            <div class="input-group" style="width: 100px;">
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="number" class="form-control form-control-sm text-center" value="1" min="1" max="10" readonly>
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="btn btn-warning w-100 fw-bold add-to-cart-btn" 
-                                onclick="addToCart('Korean Fried Rice', 11.50, 'images/koreanFriedRice.jpg', this)">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 5: Vietnamese Pho -->
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="card product-card">
-                    <img src="images/vietnamesePho.jpg" class="card-img-top product-image" alt="Vietnamese Pho">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-warning fw-bold">Vietnamese Pho</h5>
-                        <p class="card-text text-light flex-grow-1">
-                            Aromatic beef noodle soup with rice noodles, fresh herbs, and 
-                            tender beef slices.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fs-4 fw-bold text-warning">€12.50</span>
-                            <div class="input-group" style="width: 100px;">
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="number" class="form-control form-control-sm text-center" value="1" min="1" max="10" readonly>
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="btn btn-warning w-100 fw-bold add-to-cart-btn" 
-                                onclick="addToCart('Vietnamese Pho', 12.50, 'images/vietnamesePho.jpg', this)">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 6: Thai Green Curry -->
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="card product-card">
-                    <img src="images/thaiGreenCurry.jpg" class="card-img-top product-image" alt="Thai Green Curry">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-warning fw-bold">Thai Green Curry</h5>
-                        <p class="card-text text-light flex-grow-1">
-                            Creamy coconut curry with chicken, bamboo shoots, and Thai basil. 
-                            Served with jasmine rice.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fs-4 fw-bold text-warning">€13.99</span>
-                            <div class="input-group" style="width: 100px;">
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="number" class="form-control form-control-sm text-center" value="1" min="1" max="10" readonly>
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="btn btn-warning w-100 fw-bold add-to-cart-btn" 
-                                onclick="addToCart('Thai Green Curry', 13.99, 'images/thaiGreenCurry.jpg', this)">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 7: Ipoh Kari Duck Noodle Soup -->
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="card product-card">
-                    <img src="images/ipohKariDuckNS.jpg" class="card-img-top product-image" alt="Ipoh Kari Duck">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-warning fw-bold">Ipoh Kari Duck Soup</h5>
-                        <p class="card-text text-light flex-grow-1">
-                            Malaysian-style curry duck noodle soup with tender duck meat and 
-                            rich, spicy broth.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fs-4 fw-bold text-warning">€15.50</span>
-                            <div class="input-group" style="width: 100px;">
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="number" class="form-control form-control-sm text-center" value="1" min="1" max="10" readonly>
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="btn btn-warning w-100 fw-bold add-to-cart-btn" 
-                                onclick="addToCart('Ipoh Kari Duck Soup', 15.50, 'images/ipohKariDuckNS.jpg', this)">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 8: Thai Sweet-Chilli Chicken -->
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="card product-card">
-                    <img src="images/thaiSweetChilliChicken.jpg" class="card-img-top product-image" alt="Thai Sweet-Chilli Chicken">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-warning fw-bold">Thai Sweet-Chilli Chicken</h5>
-                        <p class="card-text text-light flex-grow-1">
-                            Crispy chicken pieces tossed in our signature sweet and spicy 
-                            chilli sauce.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fs-4 fw-bold text-warning">€13.50</span>
-                            <div class="input-group" style="width: 100px;">
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="number" class="form-control form-control-sm text-center" value="1" min="1" max="10" readonly>
-                                <button class="btn btn-outline-warning btn-sm" type="button" onclick="changeQuantity(this, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="btn btn-warning w-100 fw-bold add-to-cart-btn" 
-                                onclick="addToCart('Thai Sweet-Chilli Chicken', 13.50, 'images/thaiSweetChilliChicken.jpg', this)">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Products will be loaded here dynamically from JSON -->
         </div>
     </section>
 
@@ -279,8 +92,80 @@
     </div>
 </main>
 
-<!-- Cart Management Script -->
+<!-- Cart Management Script - Loading Products from JSON -->
 <script>
+    // Load products from JSON file
+    async function loadProducts() {
+        try {
+            const response = await fetch('/data/products.json');
+            const data = await response.json();
+            
+            // Hide loading indicator
+            document.getElementById('loadingIndicator').style.display = 'none';
+            
+            // Display products
+            displayProducts(data.products);
+            
+        } catch (error) {
+            console.error('Error loading products:', error);
+            document.getElementById('loadingIndicator').innerHTML = `
+                <div class="alert alert-danger">
+                    <strong>Error!</strong> Could not load products. Please refresh the page.
+                </div>
+            `;
+        }
+    }
+
+    // Display products in grid
+    function displayProducts(products) {
+        const productGrid = document.getElementById('productGrid');
+        
+        products.forEach(product => {
+            // Only show available products
+            if (!product.available) return;
+            
+            const productCard = `
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <div class="card product-card">
+                        <img src="/${product.image}" 
+                             class="card-img-top product-image" 
+                             alt="${product.name}"
+                             onerror="this.src='/images/placeholder.jpg'">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-warning fw-bold">${product.name}</h5>
+                            <p class="card-text text-light flex-grow-1">
+                                ${product.description}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="fs-4 fw-bold text-warning">€${product.price.toFixed(2)}</span>
+                                <div class="input-group" style="width: 100px;">
+                                    <button class="btn btn-outline-warning btn-sm" 
+                                            type="button" 
+                                            onclick="changeQuantity(this, -1)">-</button>
+                                    <input type="number" 
+                                           class="form-control form-control-sm text-center" 
+                                           value="1" 
+                                           min="1" 
+                                           max="10" 
+                                           readonly>
+                                    <button class="btn btn-outline-warning btn-sm" 
+                                            type="button" 
+                                            onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-warning w-100 fw-bold add-to-cart-btn" 
+                                    onclick='addToCart(${JSON.stringify(product)}, this)'>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            productGrid.innerHTML += productCard;
+        });
+    }
+
     // Change quantity
     function changeQuantity(button, change) {
         const input = button.parentElement.querySelector('input');
@@ -290,25 +175,26 @@
         input.value = value;
     }
 
-    // Add to cart function
-    function addToCart(name, price, image, button) {
+    // Add to cart function (compatible with sample code pattern)
+    function addToCart(product, button) {
         // Get quantity
-        const quantityInput = button.closest('.card-body').querySelector('input')
+        const quantityInput = button.closest('.card-body').querySelector('input');
         const quantity = parseInt(quantityInput.value);
         
         // Get cart from localStorage
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         
         // Check if item already exists
-        const existingItem = cart.find(item => item.name === name);
+        const existingItem = cart.find(item => item.id === product.id);
         
         if (existingItem) {
             existingItem.quantity += quantity;
         } else {
             cart.push({
-                name: name,
-                price: price,
-                image: image,
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
                 quantity: quantity
             });
         }
@@ -316,15 +202,19 @@
         // Save to localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
         
+        // Update checkout counter (like sample code)
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        localStorage.setItem('checkout', totalItems);
+        
         // Show feedback
         showAddedToCartFeedback(button);
         
-        // Update cart counter
+        // Update displays
         updateCartDisplay();
         
-        // Dispatch custom event
+        // Dispatch custom event for nav counter
         window.dispatchEvent(new Event('cartUpdated'));
-
+        
         // Reset quantity to 1
         quantityInput.value = 1;
     }
@@ -364,6 +254,9 @@
         }
     }
 
-    // Initialize cart display on page load
-    document.addEventListener('DOMContentLoaded', updateCartDisplay);
-</script> 
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        loadProducts();
+        updateCartDisplay();
+    });
+</script>

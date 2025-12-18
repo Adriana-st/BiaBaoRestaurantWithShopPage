@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Steamed Baozi",
       "description": "Fluffy steamed buns filled with savoury pork and fresh vegetables. A traditional Chinese favourite!",
-      "price": 8.50,
+      "price": 10.50,
       "image": "images/baozi.png",
       "category": "Appetizers",
       "available": true
@@ -13,7 +13,7 @@
       "id": 2,
       "name": "Taiwanese Braised Beef",
       "description": "Tender beef slow-cooked in aromatic soy sauce with star anise and served over rice.",
-      "price": 14.99,
+      "price": 17.99,
       "image": "images/braisedBeef2.jpg",
       "category": "Main Course",
       "available": true
@@ -22,7 +22,7 @@
       "id": 3,
       "name": "Crispy Roast Duck",
       "description": "Succulent duck with perfectly crispy skin, served with pancakes, cucumber, and hoisin sauce.",
-      "price": 16.99,
+      "price": 18.50,
       "image": "images/CrispyDuck.jpg",
       "category": "Main Course",
       "available": true
@@ -31,7 +31,7 @@
       "id": 4,
       "name": "Korean Fried Rice",
       "description": "Spicy kimchi fried rice with vegetables, topped with a fried egg and sesame seeds.",
-      "price": 11.50,
+      "price": 13.50,
       "image": "images/koreanFriedRice.jpg",
       "category": "Main Course",
       "available": true
@@ -40,7 +40,7 @@
       "id": 5,
       "name": "Vietnamese Pho",
       "description": "Aromatic beef noodle soup with rice noodles, fresh herbs, and tender beef slices.",
-      "price": 12.50,
+      "price": 18.00,
       "image": "images/vietnamesePho.jpg",
       "category": "Soups",
       "available": true
@@ -49,7 +49,7 @@
       "id": 6,
       "name": "Thai Green Curry",
       "description": "Creamy coconut curry with chicken, bamboo shoots, and Thai basil. Served with jasmine rice.",
-      "price": 13.99,
+      "price": 13.50,
       "image": "images/thaiGreenCurry.jpg",
       "category": "Curry",
       "available": true
@@ -58,7 +58,7 @@
       "id": 7,
       "name": "Ipoh Kari Duck Soup",
       "description": "Malaysian-style curry duck noodle soup with tender duck meat and rich, spicy broth.",
-      "price": 15.50,
+      "price": 18.50,
       "image": "images/ipohKariDuckNS.jpg",
       "category": "Soups",
       "available": true
@@ -67,7 +67,7 @@
       "id": 8,
       "name": "Thai Sweet-Chilli Chicken",
       "description": "Crispy chicken pieces tossed in our signature sweet and spicy chilli sauce.",
-      "price": 13.50,
+      "price": 15.50,
       "image": "images/thaiSweetChilliChicken.jpg",
       "category": "Main Course",
       "available": true

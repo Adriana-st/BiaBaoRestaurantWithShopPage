@@ -5,12 +5,6 @@
         padding-top: 100px;
         min-height: 100vh;
     }
-    
-    .checkout-section {
-        background-color: #1a1a1a;
-        border: 1px solid #333;
-        border-radius: 10px;
-    }
 </style>
 
 <main class="container my-5">
@@ -128,7 +122,7 @@
                                placeholder="1234 5678 9012 3456"
                                maxlength="19"
                                required>
-                        <small class="form-text text-muted">
+                        <small class="form-text text-light">
                             Demo: 1234 5678 9012 3456
                         </small>
                     </div>
@@ -158,7 +152,7 @@
                                    placeholder="123"
                                    maxlength="3"
                                    required>
-                            <small class="form-text text-muted">
+                            <small class="form-text text-light">
                                 Demo: 123
                             </small>
                         </div>
@@ -190,7 +184,7 @@
                     <button type="submit" 
                             class="btn btn-warning btn-lg fw-bold" 
                             id="buy-now">
-                        <i class="bi bi-lock-fill"></i> Complete Purchase
+                        Complete Purchase
                     </button>
                     <a href="/cart" class="btn btn-outline-light">
                         <i class="bi bi-arrow-left"></i> Back to Cart
@@ -280,7 +274,7 @@
                              style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
                         <div>
                             <div class="fw-bold small">${item.name}</div>
-                            <div class="text-muted small">Qty: ${item.quantity}</div>
+                            <div class="text-light small">Qty: ${item.quantity}</div>
                         </div>
                     </div>
                     <div class="text-warning fw-bold">

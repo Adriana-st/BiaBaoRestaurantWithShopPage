@@ -5,28 +5,6 @@
         padding-top: 100px;
         min-height: 100vh;
     }
-
-    .success-icon {
-        font-size: 5rem;
-        color: #28a745;
-        animation: scaleIn 0.5s ease-out;
-    }
-
-    @keyframes scaleIn {
-        from {
-            transform: scale(0);
-            opacity: 0;
-        }
-        to {
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
-
-    .order-detail-card {
-        background-color: #1a1a1a;
-        border: 2px solid #28a745;
-    }
 </style>
 
 <main class="container my-5">
@@ -71,7 +49,7 @@
                     <h5 class="text-warning mb-3">
                         <i class="bi bi-truck"></i> Delivery Information
                     </h5>
-                    <div class="bg-dark p-3 rounded mb-4">
+                    <div class="bg-dark p-3 text-light rounded mb-4">
                         <p class="mb-1" id="deliveryName"></p>
                         <p class="mb-1" id="deliveryAddress1"></p>
                         <p class="mb-1" id="deliveryAddress2"></p>
@@ -88,11 +66,11 @@
 
                     <!-- Order Total -->
                     <div class="border-top border-secondary pt-3">
-                        <div class="d-flex justify-content-between mb-2">
+                        <div class="d-flex text-light justify-content-between mb-2">
                             <span>Subtotal:</span>
                             <span>€<span id="orderSubtotal">0.00</span></span>
                         </div>
-                        <div class="d-flex justify-content-between mb-2">
+                        <div class="d-flex text-light justify-content-between mb-2">
                             <span>Delivery:</span>
                             <span>€<span id="orderDelivery">3.50</span></span>
                         </div>
@@ -127,7 +105,7 @@
             </div>
 
             <!-- Additional Info -->
-            <div class="text-center text-muted">
+            <div class="text-center text-light">
                 <p class="mb-1">
                     <i class="bi bi-envelope"></i> A confirmation email has been sent to your registered email address.
                 </p>
@@ -175,12 +153,12 @@
         document.getElementById('orderDate').textContent = formattedDate;
         
         // Display delivery details
-        const delivery = order.deliveryDetails;
+        const deliveryDetails = order.deliveryDetails;
         document.getElementById('deliveryName').textContent = 
-            `${delivery.firstName} ${delivery.lastName}`;
-        document.getElementById('deliveryAddress1').textContent = delivery.address1;
-        document.getElementById('deliveryAddress2').textContent = delivery.address2;
-        document.getElementById('deliveryAddress3').textContent = delivery.address3;
+            `${deliveryDetails.firstName} ${deliveryDetails.lastName}`;
+        document.getElementById('deliveryAddress1').textContent = deliveryDetails.address1;
+        document.getElementById('deliveryAddress2').textContent = deliveryDetails.address2;
+        document.getElementById('deliveryAddress3').textContent = deliveryDetails.address3;
         
         // Display order items
         let itemsHTML = '';
@@ -191,8 +169,8 @@
                         <img src="${item.image}" alt="${item.name}" 
                              style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
                         <div>
-                            <div class="fw-bold">${item.name}</div>
-                            <div class="text-muted small">€${item.price.toFixed(2)} × ${item.quantity}</div>
+                            <div class="fw-bold text-light">${item.name}</div>
+                            <div class="text-light small">€${item.price.toFixed(2)} × ${item.quantity}</div>
                         </div>
                     </div>
                     <div class="text-warning fw-bold fs-5">
@@ -206,11 +184,11 @@
         // Calculate and display totals
         const subtotal = order.items.reduce((sum, item) => 
             sum + (item.price * item.quantity), 0);
-        const delivery = subtotal >= 25 ? 0 : 3.50;
-        const total = subtotal + delivery;
+        const deliveryFee = subtotal >= 25 ? 0 : 3.50;
+        const total = subtotal + deliveryFee;
         
         document.getElementById('orderSubtotal').textContent = subtotal.toFixed(2);
-        document.getElementById('orderDelivery').textContent = delivery.toFixed(2);
+        document.getElementById('orderDelivery').textContent = deliveryFee.toFixed(2);
         document.getElementById('orderTotal').textContent = total.toFixed(2);
     }
 

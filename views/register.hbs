@@ -16,17 +16,6 @@
                 </div>
                 <div class="card-body p-4">
                     
-                    <!-- Success Message -->
-                    <div class="alert alert-success d-none" role="alert" id="registerSuccess">
-                        <strong>Success!</strong> Your account has been created. 
-                        Redirecting to login...
-                    </div>
-
-                    <!-- Error Message -->
-                    <div class="alert alert-danger d-none" role="alert" id="registerError">
-                        <strong>Error!</strong> <span id="errorMessage"></span>
-                    </div>
-
                     <!-- Registration Form -->
                     <form name="register" id="user-register" method="get">
                         
@@ -34,7 +23,7 @@
                         <h5 class="text-warning mb-3">Personal Information</h5>
                         
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-3 text-light">
                                 <label for="firstNameID" class="form-label fw-semibold">
                                     First Name <span class="text-danger">*</span>
                                 </label>
@@ -46,7 +35,7 @@
                                        required>
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-3 text-light">
                                 <label for="lastNameID" class="form-label fw-semibold">
                                     Last Name <span class="text-danger">*</span>
                                 </label>
@@ -62,7 +51,7 @@
                         <!-- Account Information -->
                         <h5 class="text-warning mb-3 mt-4">Account Information</h5>
 
-                        <div class="mb-3">
+                        <div class="mb-3 text-light">
                             <label for="emailID" class="form-label fw-semibold">
                                 <i class="bi bi-envelope-fill text-warning"></i> Email Address <span class="text-danger">*</span>
                             </label>
@@ -72,12 +61,12 @@
                                    name="email" 
                                    placeholder="your.email@example.com"
                                    required>
-                            <small class="form-text text-muted">
+                            <small class="form-text text-light">
                                 We'll use this for login and order confirmations
                             </small>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 text-light">
                             <label for="passwordID" class="form-label fw-semibold">
                                 <i class="bi bi-lock-fill text-warning"></i> Password <span class="text-danger">*</span>
                             </label>
@@ -88,12 +77,12 @@
                                    placeholder="Enter a strong password"
                                    minlength="6"
                                    required>
-                            <small class="form-text text-muted">
+                            <small class="form-text text-light">
                                 Minimum 6 characters
                             </small>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 text-light">
                             <label for="confirmPasswordID" class="form-label fw-semibold">
                                 Confirm Password <span class="text-danger">*</span>
                             </label>
@@ -109,7 +98,7 @@
                         <!-- Delivery Address -->
                         <h5 class="text-warning mb-3 mt-4">Delivery Address</h5>
 
-                        <div class="mb-3">
+                        <div class="mb-3 text-light">
                             <label for="address1ID" class="form-label fw-semibold">
                                 Address Line 1 <span class="text-danger">*</span>
                             </label>
@@ -121,7 +110,7 @@
                                    required>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 text-light">
                             <label for="address2ID" class="form-label fw-semibold">
                                 Town/City <span class="text-danger">*</span>
                             </label>
@@ -133,7 +122,7 @@
                                    required>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 text-light">
                             <label for="address3ID" class="form-label fw-semibold">
                                 County <span class="text-danger">*</span>
                             </label>
@@ -145,7 +134,7 @@
                                    required>
                         </div>
 
-                        <div class="mb-4">
+                        <div class="mb-4 text-light">
                             <label for="phoneID" class="form-label fw-semibold">
                                 Phone Number
                             </label>
@@ -157,7 +146,7 @@
                         </div>
 
                         <!-- Terms and Conditions -->
-                        <div class="form-check mb-4">
+                        <div class="form-check mb-4 text-light">
                             <input class="form-check-input" 
                                    type="checkbox" 
                                    id="termsCheck"
@@ -174,10 +163,19 @@
                                 <i class="bi bi-person-plus"></i> Create Account
                             </button>
                         </div>
+                        <!-- Success Message -->
+                        <div class="alert alert-success d-none" role="alert" id="registerSuccess">
+                            <strong>Success!</strong> Your account has been created. 
+                            Redirecting to login...
+                        </div>
 
+                        <!-- Error Message -->
+                        <div class="alert alert-danger d-none" role="alert" id="registerError">
+                            <strong>Error!</strong> <span id="errorMessage"></span>
+                        </div>
                         <!-- Login Link -->
                         <div class="text-center">
-                            <p class="text-muted mb-0">
+                            <p class="text-light mb-0">
                                 Already have an account? 
                                 <a href="/login" class="text-warning text-decoration-none fw-bold">
                                     Login here

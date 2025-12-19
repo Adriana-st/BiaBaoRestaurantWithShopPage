@@ -211,10 +211,28 @@
             cartSummary.classList.add('d-none');
         }
     }
+    // Add padding when cart summary is visible
+    function adjustFooterPadding() {
+        const cartSummary = document.getElementById('cartSummary');
+        const body = document.body;
+        
+        if (cartSummary && !cartSummary.classList.contains('d-none')) {
+            // Cart is visible, add padding
+            const cartHeight = cartSummary.offsetHeight;
+            body.style.paddingBottom = (cartHeight + 10) + 'px'; // +20px for spacing
+        } else {
+            // Cart is hidden, remove padding
+            body.style.paddingBottom = '0';
+        }
+    }
+    
+    // Call when cart updates
+    window.addEventListener('cartUpdated', adjustFooterPadding);
 
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', () => {
         loadProducts();
         updateCartDisplay();
+        adjustFooterPadding();
     });
 </script>
